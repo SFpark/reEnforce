@@ -1,0 +1,65 @@
+diff --git a/app/controller/Map.js b/app/controller/Map.js
+index 5d5953d..2ec2688 100644
+--- a/app/controller/Map.js
++++ b/app/controller/Map.js
+@@ -54,6 +54,7 @@ Ext.define('SFenforce.controller.Map', {
+         var tracker = this.getMap().getGeo();
+         if(tracker){
+             tracker.setUpdateAction((pressed)? 'center' : 'none');
++            tracker.updateLocation();
+         }
+         button.setUi((pressed) ? 'confirm' : 'action');
+     },
+diff --git a/app/util/MockTracker.js b/app/util/MockTracker.js
+new file mode 100644
+index 0000000..e85b60c
+--- /dev/null
++++ b/app/util/MockTracker.js
+@@ -0,0 +1,26 @@
++Ext.define('SFenforce.util.MockTracker', {
++    extend: 'GXM.plugin.Tracker',
++    config:{
++        bearing: 0,
++        distance: 0.00025,
++        center: null
++    },
++    init: function(host){
++        this.callParent(arguments);
++        var bounds = SFenforce.util.Config.getBeatsBounds() || SFenforce.util.Config.getBounds();
++        bounds = OpenLayers.Bounds.fromArray(bounds);
++        var center = bounds.getCenterLonLat().transform('EPSG:900913','EPSG:4326');
++        this.setCenter([center.lon,center.lat]);
++        this.setBearing((Math.random() * 360) * Math.PI / 180);
++    },
++    updateTrack: function(geo){
++        var bearing = this.getBearing(), dist = this.getDistance(), center = this.getCenter();
++        var dx = Math.cos(bearing) * dist;
++        var dy = Math.sin(bearing) * dist;
++        this._longitude = dx + center[0];
++        this._latitude = dy + center[1];
++        this._accuracy = 100;
++        this.setCenter([this._longitude, this._latitude]);
++        this.callParent(arguments);
++    }
++});
+\ No newline at end of file
+diff --git a/app/view/Map.js b/app/view/Map.js
+index 7110d9a..870e879 100644
+--- a/app/view/Map.js
++++ b/app/view/Map.js
+@@ -1,5 +1,5 @@
+ Ext.define("SFenforce.view.Map",{
+-    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
++    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker', 'SFenforce.util.MockTracker'],
+     extend: 'GXM.Map',
+     config: {
+         beats: null
+@@ -273,7 +273,7 @@ Ext.define("SFenforce.view.Map",{
+         
+         this.setMap(map);
+         
+-        this.setPlugins([new GXM.plugin.Tracker({
++        this.setPlugins([new SFenforce.util.MockTracker({
+                 updateAction: 'none',
+                 allowHighAccuracy: true,
+                 locationStyle:{

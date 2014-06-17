@@ -1,0 +1,291 @@
+$base-color: #000000;
+$base-gradient: 'glossy';
+$active-color: #2064ff;
+$form-bg-color: #000000;
+$list-pressed-color: #0040d0;
+@import 'sencha-touch/default/all';
+
+// You may remove any of the following modules that you
+// do not use in order to create a smaller css file.
+@include sencha-panel;
+@include sencha-buttons;
+@include sencha-sheet;
+@include sencha-picker;
+@include sencha-tabs;
+@include sencha-toolbar;
+@include sencha-toolbar-forms;
+@include sencha-indexbar;
+@include sencha-list;
+@include sencha-layout;
+@include sencha-carousel;
+@include sencha-form;
+@include sencha-msgbox;
+@include sencha-loading-spinner;
+
+// Your custom code goes here...
+@include pictos-iconmask('sflocate');
+@include pictos-iconmask('locate4');
+$base-text-color: #FFFFFF;
+$secondary-text-color: #888888;
+$button-color: #2ec432;
+$map-button-color: #333;
+$form-field-bgcolor: #666;
+@include sencha-button-ui('zoomselector', #f7b700, 'glossy');
+@include sencha-button-ui('sfbutton', $button-color, null);
+@include sencha-button-ui('mapbutton', $base-color, null);
+.x-msgbox-dark .x-msgbox-text {
+    font-size: 1.8em;
+    color: white;
+}
+#featureinfo {
+    padding: 0em 0em 0em 0.1em;
+}
+#saveButton {
+    color: black;
+}
+.x-mask .x-mask-inner {
+    background-color: white;
+    color: black;
+}
+.legend-rule {
+    font-size: 1.8em;
+}
+.x-button-sfbutton.x-item-disabled {
+    @include toolbar-button(#208622, null);
+}
+.x-toolbar-mapbutton {
+    background-color: $base-color;
+}
+.x-button-mapbutton.x-button-pressed {
+    @include toolbar-button(#FFF, 'glossy');
+}
+.x-button-mapbutton.x-button-pressing {
+    @include toolbar-button(#bcbcbc, null);
+}
+.x-button-mapbutton .x-button-icon.x-icon-mask {
+    width: 2.5em;
+    height: 2.5em;
+    -webkit-mask-size: 2.5em;
+}
+.x-field-select .x-component-outer::after {
+    background-color: #000;
+}
+#lastRefresh {
+  padding-left: 0.2em;
+  padding-top: 1.5em;
+}
+.x-select-overlay {
+  .x-list-label {
+    font-size: 1.8em;
+  }
+  .x-list-item-label {
+    height: 3.2em;
+  }
+}
+.portrait .x-list-item {
+    display: inline-block;
+    width: 15.5em;
+    vertical-align: top;
+  .x-list-item-label {
+    min-height: 3.55em;
+  }
+}
+.feature-info-row.postid {
+    font-size: 1.8em;
+}
+.feature-info-row {
+    font-size: 1.2em;
+}
+.x-button-sfbutton .x-button-label, .x-button-mapbutton .x-button-label, .x-toolbar .x-button-sfbutton .x-button-label, .x-toolbar .x-button-mapbutton .x-button-label {
+    font-size: 1.8em;
+}
+#saveButton .x-button-label {
+    font-size: 2.4em;
+}
+.x-toolbar .x-button-mapbutton .x-button-label {
+    color: $base-text-color;
+}
+.featureinfo .x-list {
+    background-color: #000;
+}
+.featureinfo .list-disabled .x-list-item {
+    background-color: #000;
+}
+.featureinfo .x-list-item-label {
+    border-top: none !important;
+}
+.featureinfo .x-list.list-disabled .x-list-item .x-list-item-label {
+    color: #666;
+}
+.featureinfo .list-enabled .x-list-item.special-item .x-list-item-label {
+    font-weight: bold;
+    font-size: 1.8em;
+    padding: 0.1em 0.1em 0.1em 0.1em;
+    min-height: 1.5em;
+}
+.featureinfo .x-list-item:last-child .x-list-item-label {
+    border-bottom: none !important;
+}
+.featureinfo .x-list .x-list-item .x-list-item-label {
+    color: $base-text-color;
+    font-size: 1.25em;
+    min-height: 2em;
+    padding: 0.3em 0.3em 0.3em 0.1em;
+}
+.lastupdateprefix {
+    color: $base-text-color;
+    font-size: 1.2em;
+}
+.lastupdatepostfix {
+    color: $base-text-color;
+    font-size: 1.2em;
+}
+.x-item-selected .x-list-label {
+    color: black;
+}
+.featureinfo {
+    padding: 0.5em;
+    background-color: $base-color;
+    color: $base-text-color;
+}
+.featureinfo p.infotext {
+    color: white;
+    font-size: 1.8em;
+}
+.x-form-field {
+    font-size: 1.45em;
+}
+.x-form-fieldset-login .x-form-label {
+    background-color: $form-field-bgcolor;
+    span {
+        float: right;
+        font-size: 1.45em;
+    }
+    color: $base-text-color;
+}
+.zoom-label {
+    div {
+        margin-right: 0.35em;
+        float: right;
+    }
+    font-size: 1.45em;
+    font-weight: bold;
+    padding: 0.5em;
+    background-color: $base-color;
+    color: $base-text-color;
+}
+.x-toolbar-zoomselector .x-button {
+  .x-button-label {
+    color: #333;
+    font-size: 1.45em;
+  }
+}
+.x-toolbar-zoomselector {
+    background-color: $base-color;
+}
+.x-toolbar-zoomselector .x-button-pressed {
+  .x-button-label {
+    color: $base-text-color;
+    font-size: 1.45em;
+  }
+}
+#loginButton {
+  .x-button-label {
+    color: $base-text-color;
+  }
+}
+div.olMapViewport {
+    background-color: #BBBBBB
+}
+div.olControlZoom {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 4px;
+    padding: 2px;
+}
+div.olControlZoom a {
+    display: block;
+    margin: 1px;
+    padding: 0;
+    color: white;
+    font-size: 48px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    height: 52px;
+    width: 52px;
+    line-height: 48px;
+    text-shadow: 0 0 3px rgba($base-color,0.8);
+    background: rgba($base-color, 0.5);
+    filter: alpha(opacity=80);
+}
+a.olControlZoomIn {
+    border-radius: 4px 4px 0 0;
+}
+a.olControlZoomOut {
+    border-radius: 0 0 4px 4px;
+}
+div.olControlZoom a:hover {
+    background: rgba($base-color, 0.7);
+    filter: alpha(opacity=100);
+}
+div.olControlAttribution {
+    border-top: 2px solid rgba($base-color,0.65);
+    border-left: 2px solid rgba($base-color,0.65);
+    border-top-left-radius: 10px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+    padding: 3px 5px;
+    background-color: rgba($base-color,0.35);
+    color: black;
+    text-shadow: 0 0 2px #fff;
+}
+
+div.olControlAttribution a {
+    color: navy
+}
+html, body {
+    height: 100%;
+    background-color: $base-color;
+}
+#appLoadingIndicator {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    -webkit-animation-name: appLoadingIndicator;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: linear;
+}
+#appLoadingIndicator > * {
+    background-color: #FFFFFF;
+    display: inline-block;
+    height: 30px;
+    -webkit-border-radius: 15px;
+    margin: 0 5px;
+    width: 30px;
+    opacity: 0.8;
+}
+@-webkit-keyframes appLoadingIndicator{
+    0% {
+        opacity: 0.8
+    }
+    50% {
+        opacity: 0
+    }
+    100% {
+        opacity: 0.8
+    }
+}
+.refreshLabel {
+    color: #FFF0F0;
+    padding-left: 1em;
+}

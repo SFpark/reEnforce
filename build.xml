@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SFenforce" default="dist" basedir=".">
+
+    <description>
+        SFenforce Build File
+    </description>
+
+    <property name="senchabuild" location="build"/>
+    <property name="senchaarchive" location="archive"/>
+    <property name="build" location="warbuild"/>
+
+    <condition property="git" value="git.cmd" else="git">
+        <os family="windows"/>
+    </condition>
+	
+	<condition property="sencha" value="sencha.bat" else="sencha">
+	        <os family="windows"/>
+    </condition>
+
+    <condition property="prodarg" value="-e production" else="production">
+            <os family="windows"/>
+    </condition>
+    
+	<target name="init">
+
+        <echo message="pulling in submodules"/>
+        <exec executable="${git}" failonerror="true">
+            <arg line="submodule init"/>
+        </exec>
+        <exec executable="${git}" failonerror="true">
+            <arg line="submodule sync"/>
+        </exec>
+        <exec executable="${git}" failonerror="true">
+            <arg line="submodule update"/>
+        </exec>
+
+        <mkdir dir="${build}/${ant.project.name}/WEB-INF"/>
+        <copy todir="${build}/${ant.project.name}/WEB-INF">
+            <fileset dir="build/production"/>
+        </copy>
+
+        
+        <delete dir="${senchabuild}"/>
+        <delete dir="${senchaarchive}"/>
+        
+		
+    </target>
+
+    <target name="clean" description="remove previous build">
+        <delete dir="${build}"/>
+    </target>
+
+    <target name="dist" depends="init"/>
+	
+	<target name="senchabuild">
+		<echo message="doing the application build through the Sencha SDK"/>
+		<exec executable="${sencha}" failonerror="true">
+            <arg line="app build ${prodarg}"/>
+        </exec>
+	</target>
+	
+    <target name="war" depends="dist,senchabuild">
+        <war needxmlfile="false" destfile="${build}/${ant.project.name}.war">
+            <fileset dir="build/production"/>
+        </war>
+    </target>	
+	
+</project>

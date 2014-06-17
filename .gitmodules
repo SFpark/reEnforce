@@ -1,0 +1,6 @@
+[submodule "externals/openlayers"]
+	path = externals/openlayers
+	url = https://github.com/ahocevar/openlayers.git
+[submodule "externals/GXM"]
+	path = externals/GXM
+	url = https://github.com/opengeo/GXM.git
