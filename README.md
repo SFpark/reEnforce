@@ -11,8 +11,8 @@ Go into externals/openlayers/build and build using:
 
 Create a ProxyPass in your Apache configuration to map to the demo GeoServer instance:
 
-    ProxyPass /geoserver http://sfpark.demo.opengeo.org/geoserver
-    ProxyPassReverse /geoserver http:/sfpark.demo.opengeo.org/geoserver
+    ProxyPass /geoserver <URL for geoserver instance>
+    ProxyPassReverse /geoserver <URL for geoserver instance>
 
 For debugging purposes you can change the reference in index.html to lib/OpenLayers.js instead.
 
