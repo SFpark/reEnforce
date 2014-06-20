@@ -1,4 +1,4 @@
-SFenforce
+reEnforce
 =========
 
 Copy the application-specific OpenLayers build profile named openlayers.cfg into the externals/openlayers/build directory, or alternatively create a symbolic link if your operating system supports this (cd externals/openlayers/build followed by ln -s ../../../openlayers.cfg .)
